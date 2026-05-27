@@ -95,7 +95,7 @@ Please advise on my chances and how I should prepare for the interview.`;
   const handleWhatsAppRedirect = () => {
     // Encodes the custom compiled profile summary to direct WhatsApp
     const encodedText = encodeURIComponent(query);
-    const mentorNumber = "918340156550"; // Customizable Admin WhatsApp Phone Number
+    const mentorNumber = "918873120581"; // Customizable Admin WhatsApp Phone Number
     const waUrl = `https://api.whatsapp.com/send?phone=${mentorNumber}&text=${encodedText}`;
     window.open(waUrl, '_blank');
     onClose();
