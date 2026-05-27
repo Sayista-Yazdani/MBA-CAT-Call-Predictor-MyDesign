@@ -2,17 +2,9 @@ import { useMemo } from 'react';
 import type { CandidateProfile, BSchoolPrediction } from '../types';
 import { collegeDatabase } from '../data/colleges';
 
-/**
- * Custom React Hook: usePredictor
- * 
- * 💡 LEARN CORRELATION (PHP DEVELOPERS):
- * In PHP, you write a standard function in a helper file that performs calculations.
- * In React, we write a "custom hook" that runs calculations and automatically returns
- * a reactive value that updates the UI whenever the user's form inputs change!
- */
+
 export function usePredictor(profile: CandidateProfile | null): BSchoolPrediction[] {
-  // useMemo ensures that we only re-calculate predictions when the profile changes.
-  // This is highly efficient and prevents duplicate screen redraws.
+
   return useMemo(() => {
     if (!profile) return [];
 
@@ -29,11 +21,10 @@ export function usePredictor(profile: CandidateProfile | null): BSchoolPredictio
     const class12 = Number(profile.class12Percentage) || 0;
     const undergrad = Number(profile.undergradPercentage) || 0;
 
-    // Standard work experience benchmarks
+
     const workExDec = Number(profile.workExDec) || 0;
     const profileStrength = Number(profile.profileStrength) || 0;
 
-    // Map Category (Handles PwD bypass automatically)
     let category = profile.category || 'General';
     if (profile.pwd === 'Yes') {
       category = 'PwD';

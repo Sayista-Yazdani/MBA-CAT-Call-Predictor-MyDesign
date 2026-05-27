@@ -5,14 +5,6 @@ interface ConsultationProps {
   onClose: () => void;
 }
 
-/**
- * Consultation Component
- * 
- * 💡 LEARN CORRELATION (PHP DEVELOPERS):
- * React uses local dynamic states (`formData`, `submitted`) to instantly capture 
- * user inputs, validate inputs on the fly, and render success alerts 
- * without reloading the webpage!
- */
 export function Consultation({ isOpen, onClose }: ConsultationProps) {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -82,8 +74,8 @@ export function Consultation({ isOpen, onClose }: ConsultationProps) {
         </div>
 
         {/* Close Button */}
-        <button 
-          type="button" 
+        <button
+          type="button"
           className="btn-close close-form rounded-0 p-1 text-center text-muted text-white"
           onClick={onClose}
           aria-label="Close form"
@@ -101,49 +93,49 @@ export function Consultation({ isOpen, onClose }: ConsultationProps) {
           <form id="consultForm" onSubmit={handleSubmit} noValidate>
             <div className="row mb-2">
               <div className="col-6">
-                <input 
-                  type="text" 
-                  className="form-control form-control-sm" 
-                  placeholder="First Name*" 
+                <input
+                  type="text"
+                  className="form-control form-control-sm"
+                  placeholder="First Name*"
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
-                  required 
+                  required
                 />
               </div>
               <div className="col-6">
-                <input 
-                  type="text" 
-                  className="form-control form-control-sm" 
-                  placeholder="Last Name*" 
+                <input
+                  type="text"
+                  className="form-control form-control-sm"
+                  placeholder="Last Name*"
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
-                  required 
+                  required
                 />
               </div>
             </div>
             <div className="mb-2">
-              <input 
-                type="email" 
-                className="form-control form-control-sm" 
-                placeholder="Email*" 
+              <input
+                type="email"
+                className="form-control form-control-sm"
+                placeholder="Email*"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                required 
+                required
               />
             </div>
             <div className="mb-2">
-              <input 
-                type="tel" 
-                className="form-control form-control-sm" 
-                placeholder="Phone*" 
+              <input
+                type="tel"
+                className="form-control form-control-sm"
+                placeholder="Phone*"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
-                required 
+                required
               />
             </div>
             <div className="mb-2">
-              <select 
-                className="form-select form-select-sm" 
+              <select
+                className="form-select form-select-sm"
                 value={source}
                 onChange={(e) => setSource(e.target.value)}
                 required
@@ -156,8 +148,8 @@ export function Consultation({ isOpen, onClose }: ConsultationProps) {
               </select>
             </div>
             <div className="mb-2">
-              <textarea 
-                className="form-control form-control-sm" 
+              <textarea
+                className="form-control form-control-sm"
                 rows={3}
                 placeholder="Additional Questions?"
                 value={questions}

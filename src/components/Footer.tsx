@@ -2,15 +2,6 @@ interface FooterProps {
   onOpenConsultation: () => void;
 }
 
-/**
- * Footer Component
- * 
- * 💡 LEARN CORRELATION (PHP DEVELOPERS):
- * Standard global footer files in PHP (`footer.php`) are translated into React components!
- * We can pass interactions (like opening the consultation slide-up drawer) 
- * via component properties called "Props". It works just like passing values 
- * into a PHP helper function!
- */
 export function Footer({ onOpenConsultation }: FooterProps) {
   return (
     <footer id="footer">
@@ -23,7 +14,7 @@ export function Footer({ onOpenConsultation }: FooterProps) {
 
         {/* Logo */}
         <div className="footer-logo mb-3 d-flex justify-content-center">
-          <div 
+          <div
             className="footer-logo-text fw-bold text-uppercase d-flex align-items-center gap-2"
             style={{ letterSpacing: '1px', fontFamily: "'Poppins', sans-serif" }}
           >
