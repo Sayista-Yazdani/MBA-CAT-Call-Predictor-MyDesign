@@ -68,16 +68,18 @@ export function usePredictor(profile: CandidateProfile | null): BSchoolPredictio
       workExPoints = 10;
     } else if (workExDec >= 12 && workExDec < 22) {
       workExPoints = (workExDec - 12) * 1.0;
-    } else if (workExDec > 36 && workExDec <= 48) {
-      workExPoints = 10 - (workExDec - 36) * 0.8;
-    } else if (workExDec > 48) {
-      workExPoints = 3;
+    } else if (workExDec > 36) {
+      // Decline points smoothly as experience exceeds 3 years, capping at a minimum of 3 points
+      workExPoints = Math.max(10 - (workExDec - 36) * 0.8, 3);
     } else {
       workExPoints = 0;
     }
     
-    // Scale by relevance factor
-    const workExMultiplier = 0.6 + (workExRelevance / 5) * 0.4;
+    // Scale by relevance factor (default to 5 if not provided to avoid empty-input penalties)
+    const workExRelevanceVal = (profile.workExRelevance !== undefined && profile.workExRelevance !== null)
+      ? Number(profile.workExRelevance)
+      : 5;
+    const workExMultiplier = 0.6 + (workExRelevanceVal / 5) * 0.4;
     workExPoints = Math.min(workExPoints * workExMultiplier, 10);
     workExPoints = Math.round(workExPoints * 10) / 10;
 
