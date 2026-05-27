@@ -14,7 +14,8 @@ A premium, highly interactive, and structurally accurate profile evaluation and 
 ![Interactive Profile Stepper Wizard](preview/p3.png)
 ![Interactive Profile Stepper Wizard](preview/p4.png)
 ![Interactive Profile Stepper Wizard](preview/p5.png)
-
+![Interactive Profile Stepper Wizard](preview/p6.png)
+![Interactive Profile Stepper Wizard](preview/p7.png)
 ---
 
 ## 🌟 Key Features
@@ -47,6 +48,34 @@ A premium, highly interactive, and structurally accurate profile evaluation and 
 - A floating AI Mentor drawer widget running as a smart client-side **Expert System**.
 - Automatically evaluates your profile score (out of 60) and predictions, answering specific questions about cutoffs, and suggesting target academic boosts.
 - **WAT-PI Mock Interview Coach:** Offers profile-specific mock interview simulations, letting users submit textual answers to receive feedback and performance scores (out of 10).
+
+### 4. Option A: LocalStorage Profile Data Persistence
+- Saves all user inputs automatically in browser HTML5 `localStorage` in real-time.
+- If a candidate refreshes the page or returns to the site later, their full academic profile and prediction cards are instantly reloaded!
+
+### 5. Option B: 1-on-1 Profile Mentorship & Google Sheets CRM Integration
+- Displays an elegant gold-gradient Mentorship Banner on the homepage and results panel.
+- On-click, captures leads (Name, WhatsApp, Email, customized profile query) and logs them to a central Google Sheet Apps Script webhook.
+- Seamlessly redirects the student to a pre-filled WhatsApp chat (`918873120581`) containing their complete generated profile report to secure high conversion rates.
+- The floating **Free Consultation Drawer** is also fully synchronized to write leads directly into the same Google Sheet table!
+
+### 6. Elite Hero Section Visual Upgrades
+- Styled with prestigious, Poppins/Montserrat academic typography.
+- Displays a golden border companion badge, dual-tone gold gradient headings, and a balanced executive descriptive subtitle.
+
+---
+
+## 🧪 Automated QA Test Suite (Vitest)
+
+To ensure mathematical accuracy and prevent regression bugs, the codebase includes a robust automated unit and E2E test runner powered by **Vitest**:
+- **Unit Tests:** Verify percentage-to-point translations against strict academic slabs and evaluate the work-experience bell-curve (including peak limits, smooth cap at 3 points, and automatic 5/5 relevance fallbacks).
+- **Regression Tests:** Verify composite cushion differentials between GEM (male engineers) and high-diversity profiles.
+- **E2E Flow Simulation:** Verifies strict sectional cutoff validations and disqualification flags.
+
+Run the test suite on-demand:
+```bash
+npm run test
+```
 
 ---
 
