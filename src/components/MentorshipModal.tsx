@@ -21,9 +21,9 @@ export function MentorshipModal({ isOpen, onClose, profile }: MentorshipModalPro
       setName(profile.name || '');
       // Safely check for email if present in profile or default blank
       setEmail('');
-      
+
       const categoryText = profile.pwd === 'Yes' ? `${profile.category} (PwD)` : profile.category;
-      const catPercentileText = profile.hasCATScore === 'Yes' 
+      const catPercentileText = profile.hasCATScore === 'Yes'
         ? `CAT Percentile: ${profile.catOverall || 0}% (VARC: ${profile.catVARC || 0}%, DILR: ${profile.catDILR || 0}%, QA: ${profile.catQA || 0}%)`
         : `Targeting CAT 2025`;
 
@@ -61,8 +61,8 @@ Please advise on my chances and how I should prepare for the interview.`;
     // to a free Google App Script endpoint connected to a Google Sheet!
     try {
       // Configurable endpoint - defaults to a mock endpoint but structured for Google App Script webapps
-      const webhookUrl = "https://script.google.com/macros/s/AKfycby-YOUR-WEBHOOK-ID/exec";
-      
+      const webhookUrl = "https://script.google.com/macros/s/AKfycbxk6TGM2j1MgB6cOc4ANHgi7CPUTA6D223x6s-x8g_hzHqM1qmOKUIW-fiO-QBn-VZQEA/exec";
+
       const payload = {
         timestamp: new Date().toISOString(),
         name,
@@ -106,17 +106,17 @@ Please advise on my chances and how I should prepare for the interview.`;
   return (
     <div className="modal-backdrop-counsel d-flex align-items-center justify-content-center" style={styles.backdrop}>
       <div className="modal-content-counsel bg-white p-4 shadow-lg border border-light-subtle" style={styles.modal}>
-        
+
         {/* Header */}
         <div className="d-flex justify-content-between align-items-center mb-4">
           <h4 style={styles.title} className="m-0">
             <span className="text-warning me-2"><i className="fas fa-crown"></i></span>
             1-on-1 Profile Mentorship
           </h4>
-          <button 
-            type="button" 
-            className="btn-close" 
-            onClick={onClose} 
+          <button
+            type="button"
+            className="btn-close"
+            onClick={onClose}
             aria-label="Close"
             style={{ border: 'none', background: 'transparent', fontSize: '1.2rem', color: '#64748b' }}
           >
@@ -133,10 +133,10 @@ Please advise on my chances and how I should prepare for the interview.`;
             <p className="text-muted small mb-4">
               Your profile scorecard has been logged. To speed up booking, connect directly with our head mentor on WhatsApp!
             </p>
-            
+
             <div className="d-grid gap-2">
-              <button 
-                type="button" 
+              <button
+                type="button"
                 className="btn btn-success rounded-pill py-3 d-flex align-items-center justify-content-center gap-2 fw-bold"
                 onClick={handleWhatsAppRedirect}
                 style={{ background: 'linear-gradient(135deg, #22c55e 0%, #15803d 100%)', border: 'none' }}
@@ -144,8 +144,8 @@ Please advise on my chances and how I should prepare for the interview.`;
                 <i className="fab fa-whatsapp style-whatsapp" style={{ fontSize: '1.3rem' }}></i>
                 Start Instant WhatsApp Chat
               </button>
-              <button 
-                type="button" 
+              <button
+                type="button"
                 className="btn btn-outline-secondary rounded-pill py-2 text-muted"
                 onClick={() => { setSuccess(false); onClose(); }}
               >
@@ -163,13 +163,13 @@ Please advise on my chances and how I should prepare for the interview.`;
               <label className="form-label small fw-semibold text-secondary">Full Name*</label>
               <div className="input-group">
                 <span className="input-group-text bg-light border-end-0"><i className="fas fa-user text-muted"></i></span>
-                <input 
-                  type="text" 
-                  className="form-control" 
-                  value={name} 
+                <input
+                  type="text"
+                  className="form-control"
+                  value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Your Name"
-                  required 
+                  required
                 />
               </div>
             </div>
@@ -178,13 +178,13 @@ Please advise on my chances and how I should prepare for the interview.`;
               <label className="form-label small fw-semibold text-secondary">WhatsApp Phone Number*</label>
               <div className="input-group">
                 <span className="input-group-text bg-light border-end-0 text-success"><i className="fab fa-whatsapp"></i></span>
-                <input 
-                  type="tel" 
-                  className="form-control" 
-                  value={whatsapp} 
+                <input
+                  type="tel"
+                  className="form-control"
+                  value={whatsapp}
                   onChange={(e) => setWhatsapp(e.target.value)}
                   placeholder="e.g. +91 98765 43210"
-                  required 
+                  required
                 />
               </div>
             </div>
@@ -193,10 +193,10 @@ Please advise on my chances and how I should prepare for the interview.`;
               <label className="form-label small fw-semibold text-secondary">Email Address (Optional)</label>
               <div className="input-group">
                 <span className="input-group-text bg-light border-end-0"><i className="fas fa-envelope text-muted"></i></span>
-                <input 
-                  type="email" 
-                  className="form-control" 
-                  value={email} 
+                <input
+                  type="email"
+                  className="form-control"
+                  value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="e.g. name@example.com"
                 />
@@ -205,8 +205,8 @@ Please advise on my chances and how I should prepare for the interview.`;
 
             <div className="mb-4">
               <label className="form-label small fw-semibold text-secondary">Pre-filled Profile Query Summary*</label>
-              <textarea 
-                className="form-control text-muted" 
+              <textarea
+                className="form-control text-muted"
                 rows={6}
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
@@ -216,8 +216,8 @@ Please advise on my chances and how I should prepare for the interview.`;
             </div>
 
             <div className="d-grid">
-              <button 
-                type="submit" 
+              <button
+                type="submit"
                 className="btn btn-warning text-white rounded-pill py-3 fw-bold border-0 shadow-sm"
                 style={{ background: 'linear-gradient(135deg, #fbbf24 0%, #d97706 100%)' }}
                 disabled={loading}

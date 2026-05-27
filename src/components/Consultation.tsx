@@ -22,13 +22,39 @@ export function Consultation({ isOpen, onClose }: ConsultationProps) {
   const [questions, setQuestions] = useState('');
   const [success, setSuccess] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     // Perform basic form validation
     if (!firstName || !lastName || !email || !phone || !source) {
       alert("Please fill in all required fields marked with *");
       return;
+    }
+
+    // Capture dynamic lead to Google Sheet (Syncing with Mentorship Webhook)
+    try {
+      const webhookUrl = "https://script.google.com/macros/s/AKfycbxk6TGM2j1MgB6cOc4ANHgi7CPUTA6D223x6s-x8g_hzHqM1qmOKUIW-fiO-QBn-VZQEA/exec";
+      const payload = {
+        timestamp: new Date().toISOString(),
+        firstName,
+        lastName,
+        email,
+        phone,
+        source,
+        questions: questions || "Free Consultation Request"
+      };
+
+      await Promise.race([
+        fetch(webhookUrl, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        }),
+        new Promise(resolve => setTimeout(resolve, 800)) // Snappy fallback
+      ]);
+    } catch (err) {
+      console.warn("Consultation lead logging skipped", err);
     }
 
     // Success response
