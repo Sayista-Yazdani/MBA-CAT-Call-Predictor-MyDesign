@@ -288,7 +288,7 @@ export function StepperForm({ onPredict, loading }: StepperFormProps) {
                       type="number" 
                       className="form-control" 
                       name="class10Percentage"
-                      value={profile.class10Percentage || ''}
+                      value={profile.class10Percentage ?? ''}
                       onChange={handleNumericChange}
                       placeholder="e.g. 85.50" 
                       step="0.01" 
@@ -324,7 +324,7 @@ export function StepperForm({ onPredict, loading }: StepperFormProps) {
                       type="number" 
                       className="form-control" 
                       name="class12Percentage"
-                      value={profile.class12Percentage || ''}
+                      value={profile.class12Percentage ?? ''}
                       onChange={handleNumericChange}
                       placeholder="e.g. 85.50" 
                       step="0.01" 
@@ -359,7 +359,7 @@ export function StepperForm({ onPredict, loading }: StepperFormProps) {
                       type="number" 
                       className="form-control" 
                       name="undergradPercentage"
-                      value={profile.undergradPercentage || ''}
+                      value={profile.undergradPercentage ?? ''}
                       onChange={handleNumericChange}
                       placeholder="e.g. 78.50" 
                       step="0.01" 
@@ -395,7 +395,7 @@ export function StepperForm({ onPredict, loading }: StepperFormProps) {
                     type="number" 
                     className="form-control" 
                     name="class12MathMarks"
-                    value={profile.class12MathMarks || ''}
+                    value={profile.class12MathMarks ?? ''}
                     onChange={handleNumericChange}
                     placeholder="e.g. 72.5" 
                     step="0.01" 
@@ -411,7 +411,7 @@ export function StepperForm({ onPredict, loading }: StepperFormProps) {
                       type="number" 
                       className="form-control" 
                       name="class12BestFour"
-                      value={profile.class12BestFour || ''}
+                      value={profile.class12BestFour ?? ''}
                       onChange={handleNumericChange}
                       placeholder="e.g. 88.75" 
                       step="0.01" 
@@ -454,7 +454,7 @@ export function StepperForm({ onPredict, loading }: StepperFormProps) {
                     type="number" 
                     className="form-control" 
                     name="workExJuly" 
-                    value={profile.workExJuly || ''}
+                    value={profile.workExJuly ?? ''}
                     onChange={handleNumericChange}
                     placeholder="0" 
                     min="0" 
@@ -469,7 +469,7 @@ export function StepperForm({ onPredict, loading }: StepperFormProps) {
                     type="number" 
                     className="form-control" 
                     name="workExDec" 
-                    value={profile.workExDec || ''}
+                    value={profile.workExDec ?? ''}
                     onChange={handleNumericChange}
                     placeholder="0" 
                     min="0" 
@@ -484,7 +484,7 @@ export function StepperForm({ onPredict, loading }: StepperFormProps) {
                     type="number" 
                     className="form-control" 
                     name="workExJan" 
-                    value={profile.workExJan || ''}
+                    value={profile.workExJan ?? ''}
                     onChange={handleNumericChange}
                     placeholder="0" 
                     min="0" 
@@ -499,7 +499,7 @@ export function StepperForm({ onPredict, loading }: StepperFormProps) {
                     type="number" 
                     className="form-control" 
                     name="workExRelevance" 
-                    value={profile.workExRelevance || ''}
+                    value={profile.workExRelevance ?? ''}
                     onChange={handleNumericChange}
                     placeholder="Rate 0-5" 
                     min="0" 
@@ -515,7 +515,7 @@ export function StepperForm({ onPredict, loading }: StepperFormProps) {
                     type="number" 
                     className="form-control" 
                     name="profileStrength" 
-                    value={profile.profileStrength || ''}
+                    value={profile.profileStrength ?? ''}
                     onChange={handleNumericChange}
                     placeholder="Rate 0-5" 
                     min="0" 
@@ -560,7 +560,7 @@ export function StepperForm({ onPredict, loading }: StepperFormProps) {
                     type="number" 
                     className="form-control" 
                     name="nirfRank" 
-                    value={profile.nirfRank || ''}
+                    value={profile.nirfRank ?? ''}
                     onChange={handleNumericChange}
                     placeholder="e.g. 15" 
                     min="1" 
@@ -684,7 +684,7 @@ export function StepperForm({ onPredict, loading }: StepperFormProps) {
                             type="number" 
                             className="form-control" 
                             name="catOverall"
-                            value={profile.catOverall || ''}
+                            value={profile.catOverall ?? ''}
                             onChange={handleNumericChange}
                             placeholder="e.g. 99.50" 
                             step="0.01" 
@@ -699,7 +699,7 @@ export function StepperForm({ onPredict, loading }: StepperFormProps) {
                             type="number" 
                             className="form-control" 
                             name="catVARC"
-                            value={profile.catVARC || ''}
+                            value={profile.catVARC ?? ''}
                             onChange={handleNumericChange}
                             placeholder="e.g. 98.50" 
                             step="0.01" 
@@ -714,7 +714,7 @@ export function StepperForm({ onPredict, loading }: StepperFormProps) {
                             type="number" 
                             className="form-control" 
                             name="catDILR"
-                            value={profile.catDILR || ''}
+                            value={profile.catDILR ?? ''}
                             onChange={handleNumericChange}
                             placeholder="e.g. 97.50" 
                             step="0.01" 
@@ -729,7 +729,7 @@ export function StepperForm({ onPredict, loading }: StepperFormProps) {
                             type="number" 
                             className="form-control" 
                             name="catQA"
-                            value={profile.catQA || ''}
+                            value={profile.catQA ?? ''}
                             onChange={handleNumericChange}
                             placeholder="e.g. 99.00" 
                             step="0.01" 
