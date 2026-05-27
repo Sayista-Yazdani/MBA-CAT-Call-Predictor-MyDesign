@@ -31,7 +31,6 @@ export function usePredictor(profile: CandidateProfile | null): BSchoolPredictio
 
     // Standard work experience benchmarks
     const workExDec = Number(profile.workExDec) || 0;
-    const workExRelevance = Number(profile.workExRelevance) || 0;
     const profileStrength = Number(profile.profileStrength) || 0;
 
     // Map Category (Handles PwD bypass automatically)
@@ -74,7 +73,7 @@ export function usePredictor(profile: CandidateProfile | null): BSchoolPredictio
     } else {
       workExPoints = 0;
     }
-    
+
     // Scale by relevance factor (default to 5 if not provided to avoid empty-input penalties)
     const workExRelevanceVal = (profile.workExRelevance !== undefined && profile.workExRelevance !== null)
       ? Number(profile.workExRelevance)
