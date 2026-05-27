@@ -2,6 +2,19 @@
 
 A premium, highly interactive, and structurally accurate profile evaluation and call probability prediction tool designed for MBA aspirants. The application helps candidates determine their chances of receiving interview calls from elite IIMs (Indian Institutes of Management) and top B-schools (e.g., IIM Mumbai, VGSoM, DU DFS/DBE) by simulating realistic institutional composite score formulas.
 
+## 📷 Interface Previews
+
+### 1. High-Accuracy Results Dashboard (Light Colorful Cards)
+![Light Colorful Prediction Dashboard](preview/p1.png)
+
+### 2. Interactive Multi-Step Stepper Wizard
+![Interactive Profile Stepper Wizard](preview/p2.png)
+![Interactive Profile Stepper Wizard](preview/p3.png)
+![Interactive Profile Stepper Wizard](preview/p4.png)
+![Interactive Profile Stepper Wizard](preview/p5.png)
+![Interactive Profile Stepper Wizard](preview/p6.png)
+![Interactive Profile Stepper Wizard](preview/p7.png)
+
 ---
 
 ## 🌟 Key Features
@@ -40,6 +53,10 @@ Developed a robust predictive algorithm that mimics the authentic composite scor
 ```bash
 MBA-CAT-Call-Predictor-MyDesign/
 ├── assets/
+│   ├── images/
+│   │   ├── customer-service.gif     # Consultation floating assistant gif
+│   │   ├── preview_wizard.png       # Mockup preview image of form wizard
+│   │   └── preview_dashboard.png    # Mockup preview image of results dashboard
 │   └── videos/
 │       └── iim-campus.mp4           # Hero Section background loop
 ├── css/
@@ -47,6 +64,14 @@ MBA-CAT-Call-Predictor-MyDesign/
 │   ├── mediaquary.css               # Responsiveness breakpoints and drawers
 │   ├── animation.css                # Fluid keyframes and step transitions
 │   └── scroll.css                   # Custom modern scrollbar design
+├── preview/
+│   │   ├── p1.png     
+│   │   ├── p2.png       
+│   │   └── p3.png
+│   │   └── p4.png
+│   │   └── p5.png    
+│   │   └── p6.png
+│   │   └── p7.png    
 ├── js/
 │   └── script.js                    # Step wizard validation, accurate formulas, SVG drawers
 ├── index.html                       # Semantic HTML5 wizard and results structure
