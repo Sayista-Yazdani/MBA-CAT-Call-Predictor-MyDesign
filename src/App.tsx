@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import type { CandidateProfile } from './types';
 import { usePredictor } from './hooks/usePredictor';
 import { Splash } from './components/Splash';
@@ -6,6 +6,8 @@ import { Header } from './components/Header';
 import { StepperForm } from './components/StepperForm';
 import { BSchoolCard } from './components/BSchoolCard';
 import { Consultation } from './components/Consultation';
+import { WhatIfSlider } from './components/WhatIfSlider';
+import { AICounsellor } from './components/AICounsellor';
 import { Footer } from './components/Footer';
 
 // Import our custom premium style sheets natively
@@ -14,31 +16,45 @@ import './styles/mediaquary.css';
 import './styles/animation.css';
 import './styles/scroll.css';
 
-/**
- * Main App Orchestrator Component
- * 
- * 💡 LEARN CORRELATION (PHP DEVELOPERS):
- * In PHP, `index.php` acts as your central controller. It includes other PHP blocks 
- * (header, footer) and coordinates layout based on form actions.
- * In React, `App.tsx` acts as this controller! It coordinates states 
- * (like the selected profile, whether the consultation drawer is open, and loading)
- * and dynamically renders components on the fly!
- */
 export default function App() {
-  const [profile, setProfile] = useState<CandidateProfile | null>(null);
+  const [originalProfile, setOriginalProfile] = useState<CandidateProfile | null>(null);
+  const [adjustedPercentile, setAdjustedPercentile] = useState<number>(95);
   const [loading, setLoading] = useState(false);
   const [consultOpen, setConsultOpen] = useState(false);
   const [hasCalculated, setHasCalculated] = useState(false);
 
-  // Core Custom Hook calculations
-  const predictions = usePredictor(profile);
+  // Compute a scaled profile dynamically when the user drags the What-If slider
+  const computedProfile = useMemo((): CandidateProfile | null => {
+    if (!originalProfile) return null;
+    if (originalProfile.hasCATScore !== 'Yes') return originalProfile;
+
+    const originalOverall = Number(originalProfile.catOverall) || 95;
+    const scaleFactor = adjustedPercentile / originalOverall;
+
+    // Scale sectionals proportionally to maintain realistic score balance
+    const scaledVARC = Math.min(Math.round((Number(originalProfile.catVARC) || 95) * scaleFactor * 100) / 100, 100);
+    const scaledDILR = Math.min(Math.round((Number(originalProfile.catDILR) || 95) * scaleFactor * 100) / 100, 100);
+    const scaledQA = Math.min(Math.round((Number(originalProfile.catQA) || 95) * scaleFactor * 100) / 100, 100);
+
+    return {
+      ...originalProfile,
+      catOverall: adjustedPercentile,
+      catVARC: scaledVARC,
+      catDILR: scaledDILR,
+      catQA: scaledQA,
+    };
+  }, [originalProfile, adjustedPercentile]);
+
+  // Reactive calculations using our core custom hook
+  const predictions = usePredictor(computedProfile);
 
   const handlePredict = (newProfile: CandidateProfile) => {
     setLoading(true);
 
     // Snappy synthetic 350ms loading spinner for premium micro-interaction
     setTimeout(() => {
-      setProfile(newProfile);
+      setOriginalProfile(newProfile);
+      setAdjustedPercentile(Number(newProfile.catOverall) || 95);
       setLoading(false);
       setHasCalculated(true);
 
@@ -47,6 +63,10 @@ export default function App() {
         document.getElementById('results')?.scrollIntoView({ behavior: 'smooth' });
       }, 100);
     }, 350);
+  };
+
+  const handlePrint = () => {
+    window.print();
   };
 
   return (
@@ -75,12 +95,38 @@ export default function App() {
       </section>
 
       {/* 5. Dynamic Call Prediction Dashboard */}
-      {hasCalculated && (
+      {hasCalculated && computedProfile && (
         <section id="results" className="results-section show">
           <div className="container">
+            
+            {/* What-If Slider (Active mode only) */}
+            {computedProfile.hasCATScore === 'Yes' && (
+              <div className="row justify-content-center">
+                <div className="col-lg-10">
+                  <WhatIfSlider 
+                    currentValue={adjustedPercentile}
+                    onChange={setAdjustedPercentile}
+                  />
+                  
+                  {/* Download PDF & Action Panel */}
+                  <div className="d-flex justify-content-end mb-4 gap-3">
+                    <button 
+                      className="btn btn-primary rounded-pill px-4 py-2 border-0 shadow-sm"
+                      style={{ background: 'linear-gradient(135deg, var(--brand-navy) 0%, #1e40af 100%)', fontWeight: 600 }}
+                      onClick={handlePrint}
+                    >
+                      <i className="fas fa-file-pdf me-2"></i>
+                      Download Profile Report (PDF)
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+
             <h2 className="text-center mb-5 fw-bold text-dark" style={{ fontFamily: "'Poppins', sans-serif" }}>
               Your Predicted Calls
             </h2>
+            
             <div id="resultsContainer" className="row">
               {predictions.length === 0 ? (
                 <div className="col-12 text-center py-5">
@@ -98,14 +144,85 @@ export default function App() {
                 ))
               )}
             </div>
+
+            {/* Print-Only Hidden Scorecard Layout (Exclusively active during PDF print generation) */}
+            <div className="print-scorecard-layout">
+              <div style={{ borderBottom: '3px solid #1e3a8a', paddingBottom: '10px', marginBottom: '20px' }}>
+                <h2 style={{ color: '#1e3a8a', margin: '0 0 5px 0' }}>CAT CALL PREDICTOR</h2>
+                <h4 style={{ color: '#d97706', margin: '0' }}>Candidate Admission Evaluation Scorecard</h4>
+              </div>
+
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '30px' }}>
+                <div>
+                  <p><strong>Candidate Name:</strong> {computedProfile.name}</p>
+                  <p><strong>Gender:</strong> {computedProfile.gender} | <strong>Category:</strong> {computedProfile.category}</p>
+                  <p><strong>PwD Status:</strong> {computedProfile.pwd}</p>
+                </div>
+                <div>
+                  <p><strong>CAT Overall:</strong> {computedProfile.catOverall}%</p>
+                  <p><strong>VARC:</strong> {computedProfile.catVARC}% | <strong>DILR:</strong> {computedProfile.catDILR}% | <strong>QA:</strong> {computedProfile.catQA}%</p>
+                </div>
+              </div>
+
+              <h4 style={{ color: '#1e3a8a', borderBottom: '1px solid #e2e8f0', paddingBottom: '5px' }}>Academic & Experience Profile</h4>
+              <table className="print-table" style={{ marginBottom: '30px' }}>
+                <thead>
+                  <tr>
+                    <th>Class 10th</th>
+                    <th>Class 12th (Stream)</th>
+                    <th>Graduation (Stream)</th>
+                    <th>Work Experience</th>
+                    <th>Professional Qual</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{computedProfile.class10Percentage}% ({computedProfile.class10Board})</td>
+                    <td>{computedProfile.class12Percentage}% ({computedProfile.class12Stream})</td>
+                    <td>{computedProfile.undergradPercentage}% ({computedProfile.undergradStream})</td>
+                    <td>{computedProfile.workExDec} Months</td>
+                    <td>{computedProfile.professionalQual}</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <h4 style={{ color: '#1e3a8a', borderBottom: '1px solid #e2e8f0', paddingBottom: '5px' }}>Predicted B-School Chances</h4>
+              <table className="print-table">
+                <thead>
+                  <tr>
+                    <th>College Name</th>
+                    <th>Tier</th>
+                    <th>Eligibility Status</th>
+                    <th>Call Probability</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {predictions.map((pred, idx) => (
+                    <tr key={idx}>
+                      <td><strong>{pred.college}</strong> ({pred.type})</td>
+                      <td>{pred.tier}</td>
+                      <td>{pred.status}</td>
+                      <td>{pred.chance !== null ? pred.chance + '%' : 'Target Mode'}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              <div style={{ marginTop: '40px', fontSize: '9pt', color: '#64748b', textAlign: 'center' }}>
+                © 2026 Sayista Yazdani. All rights reserved. Generated via CAT Call Predictor.
+              </div>
+            </div>
+
           </div>
         </section>
       )}
 
-      {/* 6. Slide-Up Consultation Drawer */}
+      {/* 6. Dynamic AI Counsellor (Chat Agent Drawer) */}
+      <AICounsellor profile={originalProfile} predictions={predictions} />
+
+      {/* 7. Slide-Up Consultation Drawer */}
       <Consultation isOpen={consultOpen} onClose={() => setConsultOpen(false)} />
 
-      {/* 7. Copyright & Social Footer */}
+      {/* 8. Copyright & Social Footer */}
       <Footer onOpenConsultation={() => setConsultOpen(true)} />
     </>
   );
