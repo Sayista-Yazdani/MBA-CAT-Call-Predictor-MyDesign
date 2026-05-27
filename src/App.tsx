@@ -123,8 +123,18 @@ export default function App() {
         <video className="hero-video" autoPlay muted loop playsInline preload="none" aria-hidden="true">
           <source src="assets/videos/iim-campus.mp4" type="video/mp4" />
         </video>
-        <div className="container">
-          <h1 className="hero-title">CAT CALL PREDICTOR</h1>
+        <div className="container position-relative" style={{ zIndex: 2 }}>
+          <div className="hero-content text-center">
+            <span className="hero-badge mb-3">
+              <i className="fas fa-graduation-cap me-2"></i> CAT 2025 ADMISSION COMPANION
+            </span>
+            <h1 className="hero-title">
+              CAT CALL <span className="gold-text-gradient">PREDICTOR</span>
+            </h1>
+            <p className="hero-subtitle">
+              Evaluate your shortlisting chances across IIMs & top tier B-schools instantly with advanced composite calculations.
+            </p>
+          </div>
         </div>
       </section>
 
