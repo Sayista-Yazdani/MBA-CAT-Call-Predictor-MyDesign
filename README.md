@@ -12,8 +12,7 @@ A premium, highly interactive, and structurally accurate profile evaluation and 
 ![Interactive Profile Stepper Wizard](preview/p3.png)
 ![Interactive Profile Stepper Wizard](preview/p4.png)
 ![Interactive Profile Stepper Wizard](preview/p5.png)
-![Interactive Profile Stepper Wizard](preview/p6.png)
-![Interactive Profile Stepper Wizard](preview/p7.png)
+
 
 ---
 

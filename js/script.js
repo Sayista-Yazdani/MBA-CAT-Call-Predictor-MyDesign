@@ -523,12 +523,80 @@ function calculatePredictions(data) {
 
                 // Cap between 10% and 99%
                 chance = Math.min(Math.max(baseChance, 10), 99);
+
+                // DYNAMIC DETAILED FEEDBACK FOR ELIGIBLE CANDIDATES
+                reasons = [];
+                const chanceVal = Math.round(chance);
+
+                if (chanceVal >= 75) {
+                    reasons.push(`<strong>High Probability:</strong> Your outstanding score of ${catOverall.toFixed(2)} percentile is ${margin.toFixed(2)}% above the required overall threshold (${collegeOverallCutoff.toFixed(2)}%).`);
+                } else if (chanceVal >= 40) {
+                    reasons.push(`<strong>Moderate Probability:</strong> You have crossed the overall benchmark of ${collegeOverallCutoff.toFixed(2)}% by a margin of ${margin.toFixed(2)}%. Keeping your profile strong improves shortlisting.`);
+                } else {
+                    reasons.push(`<strong>Low Probability:</strong> While you clear the cutoff of ${collegeOverallCutoff.toFixed(2)}%, your composite score is slightly marginal. Aim for a stronger percentile.`);
+                }
+
+                // Academics dynamic advice
+                if (acadScore >= 24) {
+                    reasons.push(`<strong>Excellent Academics:</strong> Your exceptional academic foundation (10th: ${class10}%, 12th: ${class12}%, UG: ${undergrad}%) awards you a top-tier score of ${acadScore}/30.`);
+                } else if (acadScore >= 18) {
+                    reasons.push(`<strong>Strong Academics:</strong> Consistent scores across school and college (10th: ${class10}%, 12th: ${class12}%) secure a reliable ${acadScore}/30 academic weight.`);
+                } else {
+                    reasons.push(`<strong>Average Academics:</strong> With ${acadScore}/30 academic score, you face higher reliance on scoring extra margins in the CAT exam.`);
+                }
+
+                // Sectional buffers
+                const secMargins = [];
+                if (catVARC - secCut.VARC >= 8) secMargins.push(`VARC (+${(catVARC - secCut.VARC).toFixed(1)}%)`);
+                if (catDILR - secCut.DILR >= 8) secMargins.push(`DILR (+${(catDILR - secCut.DILR).toFixed(1)}%)`);
+                if (catQA - secCut.QA >= 8) secMargins.push(`QA (+${(catQA - secCut.QA).toFixed(1)}%)`);
+
+                if (secMargins.length > 0) {
+                    reasons.push(`<strong>Sectional Edge:</strong> You cleared sectionals comfortably, with an exceptional buffer in ${secMargins.join(', ')}.`);
+                } else {
+                    reasons.push(`<strong>Cutoff Cleared:</strong> All individual sectional cutoffs (VARC: ${secCut.VARC}%, DILR: ${secCut.DILR}%, QA: ${secCut.QA}%) are successfully cleared.`);
+                }
+
+                // Work experience dynamic feedback
+                if (workExDec >= 22 && workExDec <= 36) {
+                    reasons.push(`<strong>Ideal Work Experience:</strong> Your work-ex of ${workExDec} months lies inside the golden bell-curve (22-36 months), fetching maximum score of ${workExPoints}/10.`);
+                } else if (workExDec > 0) {
+                    reasons.push(`<strong>Work Experience Weight:</strong> ${workExDec} months of professional experience adds a valuable ${workExPoints}/10 to your profile.`);
+                } else {
+                    reasons.push(`<strong>Fresher Advantage:</strong> While work-ex points are zero, several old/new IIMs actively look to balance cohorts with smart freshers.`);
+                }
+
+                // Diversity
+                const divItems = [];
+                if (genderDiv > 0) divItems.push("Gender diversity (+5)");
+                if (acadDiv > 0) divItems.push(`Academic diversity (+5 for ${data.undergradStream})`);
+                if (divItems.length > 0) {
+                    reasons.push(`<strong>Diversity Boost:</strong> Profile scores are strongly elevated by: ${divItems.join(' & ')}.`);
+                } else {
+                    reasons.push(`<strong>GEM / Non-Diversity Profile:</strong> Being a male engineer, you get 0 diversity points. You must target high CAT percentiles to maximize competitiveness.`);
+                }
+
+                // Postgraduate/professional qualifications
+                const extraItems = [];
+                if (professionalBonus > 0) extraItems.push(`${data.professionalQual} qualification`);
+                if (pgBonus > 0) extraItems.push("Post-graduation");
+                if (ioeBonus > 0) extraItems.push("National Importance Institute");
+                if (extraItems.length > 0) {
+                    reasons.push(`<strong>Profile Credentials:</strong> Additional bonus points awarded for having a ${extraItems.join(' / ')}.`);
+                }
             } else {
                 // If ineligible but marginally close (within 2 percentile buffer, no sectional misses)
                 if (catOverall >= collegeOverallCutoff - 2.5 && missedSections.length === 0) {
                     chance = 12;
                 } else {
                     chance = 5;
+                }
+
+                // Support suggestion for ineligible cards
+                if (missedSections.length > 0) {
+                    reasons.push(`<strong>Key Suggestion:</strong> Work on your sectional weak areas. Achieving balanced sectional scores is critical for top IIMs.`);
+                } else if (!metOverall) {
+                    reasons.push(`<strong>Alternative Targets:</strong> Focus on prestigious non-IIM colleges (like DFS, IITs, or Tier 2 options) that match your current percentile range.`);
                 }
             }
 
@@ -562,21 +630,37 @@ function calculatePredictions(data) {
                 baseTarget = Math.max(baseTarget, 75.0);
             }
 
+            const targetVal = parseFloat(baseTarget.toFixed(2));
+            reasons = [
+                `<strong>Target Percentile:</strong> You need approximately <strong>${targetVal.toFixed(2)}%</strong> overall in CAT to safely clear the composite score threshold.`,
+                `<strong>Sectionals Target:</strong> Must score at least <strong>VARC: ${secCut.VARC}%, DILR: ${secCut.DILR}%, QA: ${secCut.QA}%</strong>.`,
+            ];
+
+            // Add dynamic profile insights to target cards
+            if (totalProfileScore >= 35) {
+                reasons.push(`<strong>Profile Advantage:</strong> Your high profile score (${totalProfileScore.toFixed(1)}/60) significantly lowers the CAT score needed.`);
+            } else if (totalProfileScore < 20) {
+                reasons.push(`<strong>Profile Challenge:</strong> A lower profile score (${totalProfileScore.toFixed(1)}/60) means you must aim for 1-2 percentile extra in CAT to be safe.`);
+            }
+
+            if (diversityPoints > 0) {
+                reasons.push(`<strong>Diversity Cushion:</strong> Diversity benefits (+${diversityPoints}) are already working to lower your target CAT score.`);
+            } else {
+                reasons.push(`<strong>High Competition:</strong> Non-diversity profile means higher peer competition; aim to exceed target by 1.5 percentile.`);
+            }
+
             predictions.push({
                 college: college.name,
                 type: college.type,
                 tier: college.tier,
                 chance: null,
                 status: 'Target Mode',
-                reasons: [
-                    `You need to secure approximately ${baseTarget.toFixed(2)} percentile overall in CAT to clear composite score thresholds.`,
-                    `Minimum sectionals required: VARC: ${secCut.VARC}%, DILR: ${secCut.DILR}%, QA: ${secCut.QA}%.`
-                ],
+                reasons: reasons,
                 overallCutoff: collegeOverallCutoff,
                 sectionalCutoffs: secCut,
                 sectionalsGot: null,
                 profileScore: totalProfileScore,
-                targetPercentile: parseFloat(baseTarget.toFixed(2))
+                targetPercentile: targetVal
             });
         }
     });
@@ -640,12 +724,16 @@ function displayResults(predictions) {
                                 <div class="card-details-panel d-none mt-3 border-top pt-3">
                                     <p class="text-muted small mb-2"><i class="fas fa-check-circle text-success me-2"></i>Overall target calculated adjusting for profile composite score.</p>
                                     <h6 class="fw-bold text-secondary small mb-2">Sectional Minimums Required:</h6>
-                                    <div class="d-flex justify-content-between text-secondary small bg-white p-2 rounded border border-light-subtle shadow-sm">
+                                    <div class="d-flex justify-content-between text-secondary small bg-white p-2 rounded border border-light-subtle shadow-sm mb-3">
                                         <span>VARC: <strong class="text-dark">${pred.sectionalCutoffs.VARC}%</strong></span>
                                         <span>DILR: <strong class="text-dark">${pred.sectionalCutoffs.DILR}%</strong></span>
                                         <span>QA: <strong class="text-dark">${pred.sectionalCutoffs.QA}%</strong></span>
                                     </div>
-                                    <div class="text-secondary small mt-3 fw-semibold">Profile Score: <span class="badge bg-secondary-subtle text-secondary">${pred.profileScore}/60</span></div>
+                                    <h6 class="fw-bold text-secondary small mb-2">Detailed Advice:</h6>
+                                    <div class="p-3 bg-white rounded-3 border border-light-subtle shadow-sm mb-3">
+                                        ${pred.reasons.map(r => `<p class="small text-muted mb-1"><i class="fas fa-info-circle me-1 text-secondary"></i>${r}</p>`).join('')}
+                                    </div>
+                                    <div class="text-secondary small mt-2 fw-semibold">Profile Score: <span class="badge bg-secondary-subtle text-secondary">${pred.profileScore.toFixed(1)}/60</span></div>
                                 </div>
                             </div>
                         </div>
