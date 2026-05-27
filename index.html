@@ -48,11 +48,28 @@
     <!-- Splash Screen -->
     <div id="splash-screen">
         <div class="splash-content">
-            <div class="splash-logo-text mb-3"
-                style="font-size: 2.2rem; font-weight: 800; letter-spacing: 1px; font-family: 'Poppins', sans-serif;">
-                <i class="fas fa-graduation-cap text-warning mb-2 d-block"
-                    style="font-size: 3rem; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));"></i>
-                <span style="color: #ffffff;">Sayista</span><span class="text-warning">Yazdani</span>
+            <div class="splash-logo-text mb-3 d-flex flex-column align-items-center"
+                style="font-family: 'Poppins', sans-serif;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="80" height="80" class="mb-3">
+                    <defs>
+                        <linearGradient id="capGradSplash" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#fbbf24" />
+                            <stop offset="100%" stop-color="#f59e0b" />
+                        </linearGradient>
+                    </defs>
+                    <circle cx="50" cy="50" r="45" fill="none" stroke="rgba(245, 158, 11, 0.25)" stroke-width="4" stroke-dasharray="6,4" />
+                    <path d="M 50,22 L 82,36 L 50,50 L 18,36 Z" fill="url(#capGradSplash)" />
+                    <path d="M 34,45 L 34,54 C 34,60 66,60 66,54 L 66,45" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" />
+                    <path d="M 50,36 L 68,46 L 70,58" fill="none" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" />
+                    <circle cx="70" cy="60" r="3" fill="#fbbf24" />
+                    <path d="M 30,75 L 45,62 L 60,68 L 75,48" fill="none" stroke="#10b981" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M 70,48 L 75,48 L 75,53" fill="none" stroke="#10b981" stroke-width="5" stroke-linecap="round" />
+                    <circle cx="75" cy="48" r="3" fill="#ffffff" />
+                </svg>
+                <div class="lh-sm text-center">
+                    <span style="color: #ffffff; font-size: 2.2rem; font-weight: 800; letter-spacing: 0.5px;">CAT <span class="text-warning">CALL</span></span>
+                    <div class="text-secondary" style="font-size: 0.85rem; font-weight: 600; letter-spacing: 4px;">PREDICTOR</div>
+                </div>
             </div>
             <p class="brandpara">Preparing your MBA journey...</p>
             <div class="loader"></div>
@@ -65,8 +82,26 @@
         <div class="container">
             <a class="navbar-brand fw-bold text-uppercase d-flex align-items-center gap-2" href="#home"
                 style="letter-spacing: 1px; font-family: 'Poppins', sans-serif;">
-                <i class="fas fa-graduation-cap text-warning"></i>
-                <span style="color: #ffffff;">Sayista</span><span class="text-warning">Yazdani</span>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="38" height="38" class="d-inline-block align-top">
+                    <defs>
+                        <linearGradient id="capGradHeader" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#fbbf24" />
+                            <stop offset="100%" stop-color="#f59e0b" />
+                        </linearGradient>
+                    </defs>
+                    <circle cx="50" cy="50" r="45" fill="none" stroke="rgba(245, 158, 11, 0.25)" stroke-width="4" stroke-dasharray="6,4" />
+                    <path d="M 50,22 L 82,36 L 50,50 L 18,36 Z" fill="url(#capGradHeader)" />
+                    <path d="M 34,45 L 34,54 C 34,60 66,60 66,54 L 66,45" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" />
+                    <path d="M 50,36 L 68,46 L 70,58" fill="none" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" />
+                    <circle cx="70" cy="60" r="3" fill="#fbbf24" />
+                    <path d="M 30,75 L 45,62 L 60,68 L 75,48" fill="none" stroke="#10b981" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M 70,48 L 75,48 L 75,53" fill="none" stroke="#10b981" stroke-width="5" stroke-linecap="round" />
+                    <circle cx="75" cy="48" r="3" fill="#ffffff" />
+                </svg>
+                <span class="d-flex flex-column lh-1 align-items-start">
+                    <span style="color: #ffffff; font-size: 1.15rem; font-weight: 800; letter-spacing: 0.5px;">CAT <span class="text-warning">CALL</span></span>
+                    <span class="text-secondary" style="font-size: 0.65rem; font-weight: 600; letter-spacing: 2px;">PREDICTOR</span>
+                </span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -590,11 +625,29 @@
             </button>
 
             <!-- Logo -->
-            <div class="footer-logo mb-3">
-                <div class="footer-logo-text fw-bold text-uppercase"
-                    style="font-size: 1.4rem; letter-spacing: 1.5px; font-family: 'Poppins', sans-serif;">
-                    <i class="fas fa-graduation-cap text-warning me-2"></i>
-                    <span style="color: #ffffff;">Sayista</span><span class="text-warning">Yazdani</span>
+            <div class="footer-logo mb-3 d-flex justify-content-center">
+                <div class="footer-logo-text fw-bold text-uppercase d-flex align-items-center gap-2"
+                    style="letter-spacing: 1px; font-family: 'Poppins', sans-serif;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="38" height="38" class="d-inline-block align-top">
+                        <defs>
+                            <linearGradient id="capGradFooter" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#fbbf24" />
+                                <stop offset="100%" stop-color="#f59e0b" />
+                            </linearGradient>
+                        </defs>
+                        <circle cx="50" cy="50" r="45" fill="none" stroke="rgba(245, 158, 11, 0.25)" stroke-width="4" stroke-dasharray="6,4" />
+                        <path d="M 50,22 L 82,36 L 50,50 L 18,36 Z" fill="url(#capGradFooter)" />
+                        <path d="M 34,45 L 34,54 C 34,60 66,60 66,54 L 66,45" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" />
+                        <path d="M 50,36 L 68,46 L 70,58" fill="none" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" />
+                        <circle cx="70" cy="60" r="3" fill="#fbbf24" />
+                        <path d="M 30,75 L 45,62 L 60,68 L 75,48" fill="none" stroke="#10b981" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M 70,48 L 75,48 L 75,53" fill="none" stroke="#10b981" stroke-width="5" stroke-linecap="round" />
+                        <circle cx="75" cy="48" r="3" fill="#ffffff" />
+                    </svg>
+                    <span class="d-flex flex-column lh-1 align-items-start">
+                        <span style="color: #ffffff; font-size: 1.15rem; font-weight: 800; letter-spacing: 0.5px;">CAT <span class="text-warning">CALL</span></span>
+                        <span class="text-secondary" style="font-size: 0.65rem; font-weight: 600; letter-spacing: 2px;">PREDICTOR</span>
+                    </span>
                 </div>
             </div>
 
