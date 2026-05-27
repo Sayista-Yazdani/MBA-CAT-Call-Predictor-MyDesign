@@ -8,6 +8,7 @@ A premium, highly interactive, and structurally accurate profile evaluation and 
 ![Light Colorful Prediction Dashboard](preview/p1.png)
 
 ### 2. Interactive Multi-Step Stepper Wizard
+![Interactive Profile Stepper Wizard](preview/pp2.png)
 ![Interactive Profile Stepper Wizard](preview/p2.png)
 ![Interactive Profile Stepper Wizard](preview/p3.png)
 ![Interactive Profile Stepper Wizard](preview/p4.png)
