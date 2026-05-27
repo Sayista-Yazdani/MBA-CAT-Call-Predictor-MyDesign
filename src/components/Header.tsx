@@ -9,8 +9,8 @@ export function Header() {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark sticky-top">
       <div className="container">
-        <a 
-          className="navbar-brand fw-bold text-uppercase d-flex align-items-center gap-2" 
+        <a
+          className="navbar-brand fw-bold text-uppercase d-flex align-items-center gap-2"
           href="#home"
           style={{ letterSpacing: '1px', fontFamily: "'Poppins', sans-serif" }}
         >
@@ -45,11 +45,11 @@ export function Header() {
         </button>
         <div className="collapse navbar-collapse justify-content-start" id="navbarNav">
           <ul className="navbar-nav">
-            <li className="nav-item"><a className="nav-link" href="#home">Home</a></li>
+            {/* <li className="nav-item"><a className="nav-link" href="#home">Home</a></li>
             <li className="nav-item"><a className="nav-link" href="#hero">Courses</a></li>
             <li className="nav-item"><a className="nav-link" href="#predictor">Previous Year Papers</a></li>
             <li className="nav-item"><a className="nav-link" href="#consultation">Mock Test</a></li>
-            <li className="nav-item"><a className="nav-link" href="#footer">More</a></li>
+            <li className="nav-item"><a className="nav-link" href="#footer">More</a></li> */}
           </ul>
         </div>
       </div>
