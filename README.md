@@ -1,4 +1,4 @@
-# MBA Pathshala - CAT Call Predictor
+# Sayista Yazdani - CAT Call Predictor
 
 A premium, highly interactive, and structurally accurate profile evaluation and call probability prediction tool designed for MBA aspirants. The application helps candidates determine their chances of receiving interview calls from elite IIMs (Indian Institutes of Management) and top B-schools (e.g., IIM Mumbai, VGSoM, DU DFS/DBE) by simulating realistic institutional composite score formulas.
 
@@ -40,9 +40,6 @@ Developed a robust predictive algorithm that mimics the authentic composite scor
 ```bash
 MBA-CAT-Call-Predictor-MyDesign/
 ├── assets/
-│   ├── images/
-│   │   ├── mbapathshalalogo.webp    # Navigation Brand Logo
-│   │   └── Pathshala.png           # Splash Screen Branding
 │   └── videos/
 │       └── iim-campus.mp4           # Hero Section background loop
 ├── css/
