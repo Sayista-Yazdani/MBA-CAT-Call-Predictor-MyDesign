@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import type { CandidateProfile } from './types';
 import { usePredictor } from './hooks/usePredictor';
 import { Splash } from './components/Splash';
@@ -8,6 +8,8 @@ import { BSchoolCard } from './components/BSchoolCard';
 import { Consultation } from './components/Consultation';
 import { WhatIfSlider } from './components/WhatIfSlider';
 import { AICounsellor } from './components/AICounsellor';
+import { CounsellingBanner } from './components/CounsellingBanner';
+import { MentorshipModal } from './components/MentorshipModal';
 import { Footer } from './components/Footer';
 
 // Import our custom premium style sheets natively
@@ -17,11 +19,50 @@ import './styles/animation.css';
 import './styles/scroll.css';
 
 export default function App() {
-  const [originalProfile, setOriginalProfile] = useState<CandidateProfile | null>(null);
-  const [adjustedPercentile, setAdjustedPercentile] = useState<number>(95);
+  // Load candidate profile from localStorage to persist data across browser refreshes
+  const [originalProfile, setOriginalProfile] = useState<CandidateProfile | null>(() => {
+    try {
+      const saved = localStorage.getItem('cat_predictor_profile');
+      return saved ? JSON.parse(saved) : null;
+    } catch {
+      return null;
+    }
+  });
+
+  const [hasCalculated, setHasCalculated] = useState<boolean>(() => {
+    try {
+      const saved = localStorage.getItem('cat_predictor_profile');
+      return saved ? true : false;
+    } catch {
+      return false;
+    }
+  });
+
+  const [adjustedPercentile, setAdjustedPercentile] = useState<number>(() => {
+    try {
+      const saved = localStorage.getItem('cat_predictor_profile');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        return Number(parsed.catOverall) || 95;
+      }
+    } catch {}
+    return 95;
+  });
+
   const [loading, setLoading] = useState(false);
   const [consultOpen, setConsultOpen] = useState(false);
-  const [hasCalculated, setHasCalculated] = useState(false);
+  const [mentorshipOpen, setMentorshipOpen] = useState(false);
+
+  // Sync profile data to localStorage whenever originalProfile is updated
+  useEffect(() => {
+    try {
+      if (originalProfile) {
+        localStorage.setItem('cat_predictor_profile', JSON.stringify(originalProfile));
+      }
+    } catch (e) {
+      console.error("Failed to sync profile to localStorage", e);
+    }
+  }, [originalProfile]);
 
   // Compute a scaled profile dynamically when the user drags the What-If slider
   const computedProfile = useMemo((): CandidateProfile | null => {
@@ -123,6 +164,13 @@ export default function App() {
               </div>
             )}
 
+            {/* Premium Gold Mentorship Banner */}
+            <div className="row justify-content-center mt-3 print-hide">
+              <div className="col-lg-10">
+                <CounsellingBanner onOpenMentorship={() => setMentorshipOpen(true)} />
+              </div>
+            </div>
+
             <h2 className="text-center mb-5 fw-bold text-dark" style={{ fontFamily: "'Poppins', sans-serif" }}>
               Your Predicted Calls
             </h2>
@@ -222,7 +270,10 @@ export default function App() {
       {/* 7. Slide-Up Consultation Drawer */}
       <Consultation isOpen={consultOpen} onClose={() => setConsultOpen(false)} />
 
-      {/* 8. Copyright & Social Footer */}
+      {/* 8. Premium Mentorship Popup Modal */}
+      <MentorshipModal isOpen={mentorshipOpen} onClose={() => setMentorshipOpen(false)} profile={computedProfile} />
+
+      {/* 9. Copyright & Social Footer */}
       <Footer onOpenConsultation={() => setConsultOpen(true)} />
     </>
   );
