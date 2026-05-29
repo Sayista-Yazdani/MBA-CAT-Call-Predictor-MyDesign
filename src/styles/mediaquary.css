@@ -16,7 +16,7 @@
     }
 
     .nav-link::after {
-        display: none; /* Hide hover underline effect on mobile */
+        display: none;
     }
 }
 
@@ -36,7 +36,6 @@
         border-radius: 16px;
     }
 
-    /* Stepper adjustments for tablet - make icons slightly smaller */
     .step-icon {
         width: 42px;
         height: 42px;
@@ -78,7 +77,6 @@
         border-radius: 12px;
     }
 
-    /* Stepper adjustments for mobile: hide labels, only show icons to prevent overlaps! */
     .step-label {
         display: none;
     }
@@ -108,7 +106,7 @@
 
     .btn-next,
     .btn-prev {
-        width: 48%; /* inline side by side */
+        width: 48%;
         text-align: center;
         padding: 10px 15px;
         display: flex;
@@ -120,7 +118,7 @@
         margin-left: auto;
     }
 
-    /* Step 1 needs full width button or aligned right */
+
     #step-1 .btn-next {
         width: 100%;
     }
@@ -136,15 +134,13 @@
     }
 
     #step-4 .d-flex {
-        flex-direction: column-reverse; /* Put previous below predict */
+        flex-direction: column-reverse;
     }
 
-    /* Results section margins */
     .results-section {
         padding: 40px 10px;
     }
 
-    /* Mobile floating consultation drawer */
     #consultation {
         right: 0;
         left: 0;
@@ -160,7 +156,7 @@
 
     .consultation-sticky {
         width: 100%;
-        border-radius: 20px 20px 0 0; /* rounded top only */
+        border-radius: 20px 20px 0 0;
         border: none;
         border-top: 3px solid var(--brand-accent);
         box-shadow: 0 -8px 30px rgba(15, 23, 42, 0.2);
@@ -171,6 +167,7 @@
         from {
             transform: translateY(100%);
         }
+
         to {
             transform: translateY(0);
         }
@@ -181,7 +178,6 @@
     }
 }
 
-/* Extra Small screen adjustments */
 @media (max-width: 380px) {
     .hero-title {
         font-size: 1.6rem;
