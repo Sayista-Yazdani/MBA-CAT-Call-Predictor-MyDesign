@@ -1,25 +1,14 @@
 import { useEffect, useState } from 'react';
 
-/**
- * Splash Screen Component
- * 
- * 💡 LEARN CORRELATION (PHP DEVELOPERS):
- * In PHP, layouts are generated entirely server-side.
- * In React, we use standard local component states (like `visible` and `fade`)
- * to dynamically show, fade-out, and completely hide visual HTML sections 
- * natively on the browser!
- */
 export function Splash() {
   const [visible, setVisible] = useState(true);
   const [fade, setFade] = useState(false);
 
   useEffect(() => {
-    // 1. Fast 450ms flash then initiate CSS fade out
     const fadeTimer = setTimeout(() => {
       setFade(true);
     }, 450);
 
-    // 2. Complete fade transition (300ms) then hide completely
     const hideTimer = setTimeout(() => {
       setVisible(false);
     }, 750);
@@ -35,11 +24,10 @@ export function Splash() {
   return (
     <div id="splash-screen" className={fade ? 'hide-splash' : ''}>
       <div className="splash-content">
-        <div 
+        <div
           className="splash-logo-text mb-3 d-flex flex-column align-items-center"
           style={{ fontFamily: "'Poppins', sans-serif" }}
         >
-          {/* Custom SVG logo with animated pulse */}
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="80" height="80" className="mb-3">
             <defs>
               <linearGradient id="capGradSplash" x1="0%" y1="0%" x2="100%" y2="100%">

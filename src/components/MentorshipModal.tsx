@@ -73,12 +73,10 @@ Please advise on my chances and how I should prepare for the interview.`;
         profileScore: profile ? (Number(profile.class10Percentage) + Number(profile.class12Percentage) + Number(profile.undergradPercentage)) : ''
       };
 
-      // We run the fetch in the background. If it fails (due to dummy URL), we gracefully fallback to successful state
-      // so the user experience is perfectly smooth.
       await Promise.race([
         fetch(webhookUrl, {
           method: 'POST',
-          mode: 'no-cors', // standard for simple cross-origin Google Forms/Scripts redirects
+          mode: 'no-cors',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
         }),
@@ -93,9 +91,9 @@ Please advise on my chances and how I should prepare for the interview.`;
   };
 
   const handleWhatsAppRedirect = () => {
-    // Encodes the custom compiled profile summary to direct WhatsApp
+
     const encodedText = encodeURIComponent(query);
-    const mentorNumber = "918873120581"; // Customizable Admin WhatsApp Phone Number
+    const mentorNumber = "918873120581";
     const waUrl = `https://api.whatsapp.com/send?phone=${mentorNumber}&text=${encodedText}`;
     window.open(waUrl, '_blank');
     onClose();

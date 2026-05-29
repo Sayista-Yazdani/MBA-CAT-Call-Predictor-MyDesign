@@ -17,13 +17,12 @@ export function Consultation({ isOpen, onClose }: ConsultationProps) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Perform basic form validation
+
     if (!firstName || !lastName || !email || !phone || !source) {
       alert("Please fill in all required fields marked with *");
       return;
     }
 
-    // Capture dynamic lead to Google Sheet (Syncing with Mentorship Webhook)
     try {
       const webhookUrl = "https://script.google.com/macros/s/AKfycbxk6TGM2j1MgB6cOc4ANHgi7CPUTA6D223x6s-x8g_hzHqM1qmOKUIW-fiO-QBn-VZQEA/exec";
       const payload = {

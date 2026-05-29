@@ -6,7 +6,6 @@ export function Footer({ onOpenConsultation }: FooterProps) {
   return (
     <footer id="footer">
       <div className="container mt-5 text-center">
-        {/* Floating Consultation Toggle Trigger */}
         <button id="consultToggleBtn" className="consult-toggle-btn" onClick={onOpenConsultation}>
           <img src="assets/images/customer-service.gif" alt="Consult GIF" />
           <span>Free Consultation</span>

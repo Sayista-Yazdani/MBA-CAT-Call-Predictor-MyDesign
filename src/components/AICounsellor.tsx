@@ -17,7 +17,7 @@ export function AICounsellor({ profile, predictions }: AICounsellorProps) {
     { sender: 'ai', text: 'Namaste! I am your AI MBA Mentor. Click any suggestion below or ask me anything about your CAT score, profile composite weight, or WAT-PI interview prep!' }
   ]);
   const [inputText, setInputText] = useState('');
-  const [interviewStep, setInterviewStep] = useState(0); // 0 = Idle, 1 = Question Asked, 2 = Graded
+  const [interviewStep, setInterviewStep] = useState(0);
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -98,10 +98,10 @@ export function AICounsellor({ profile, predictions }: AICounsellorProps) {
       if (!profile) {
         return "Please fill out and submit the Predictor Form first so I can analyze your unique profile parameters!";
       }
-      
+
       const pScore = predictions[0]?.profileScore || 0;
       let review = `Your calculated profile composite weight is <strong>${pScore.toFixed(1)}/60</strong>.<br/><br/>`;
-      
+
       if (pScore >= 35) {
         review += `🌟 <strong>Outstanding Profile!</strong> You have an exceptional academic and professional foundation. This high weight acts as a cushion, lowering your target CAT percentile requirements.`;
       } else if (pScore >= 22) {
@@ -109,7 +109,7 @@ export function AICounsellor({ profile, predictions }: AICounsellorProps) {
       } else {
         review += `⚠️ <strong>Academic Challenge:</strong> A lower profile weight means you face higher competition. You must aim to exceed target cutoffs by 2-3 percentile to offset profile deficits.`;
       }
-      
+
       return review;
     }
 
@@ -134,7 +134,7 @@ export function AICounsellor({ profile, predictions }: AICounsellorProps) {
   const handleSuggestionClick = (pillText: string) => {
     const userMessage: Message = { sender: 'user', text: pillText };
     setMessages(prev => [...prev, userMessage]);
-    
+
     setTimeout(() => {
       const responseText = generateAIResponse(pillText);
       setMessages(prev => [...prev, { sender: 'ai', text: responseText }]);
@@ -150,8 +150,8 @@ export function AICounsellor({ profile, predictions }: AICounsellorProps) {
   return (
     <>
       {/* Launcher Button */}
-      <button 
-        className="ai-chat-launcher" 
+      <button
+        className="ai-chat-launcher"
         onClick={() => setIsOpen(!isOpen)}
         aria-label="Open AI Counsellor"
       >
@@ -166,7 +166,7 @@ export function AICounsellor({ profile, predictions }: AICounsellorProps) {
               <i className="fas fa-brain text-warning"></i>
               <h6 className="fw-bold mb-0">AI MBA Mentor</h6>
             </div>
-            <button 
+            <button
               className="btn btn-sm btn-link text-white p-0 border-0"
               onClick={() => setIsOpen(false)}
             >
@@ -176,8 +176,8 @@ export function AICounsellor({ profile, predictions }: AICounsellorProps) {
 
           <div className="ai-chat-messages">
             {messages.map((m, idx) => (
-              <div 
-                key={idx} 
+              <div
+                key={idx}
                 className={`chat-bubble ${m.sender === 'ai' ? 'chat-bubble-ai' : 'chat-bubble-user'}`}
                 dangerouslySetInnerHTML={{ __html: m.text }}
               />
@@ -201,15 +201,15 @@ export function AICounsellor({ profile, predictions }: AICounsellorProps) {
           </div>
 
           <div className="ai-chat-input-area">
-            <input 
-              type="text" 
+            <input
+              type="text"
               className="form-control form-control-sm border-secondary-subtle rounded-pill py-2 px-3"
               placeholder="Ask about cutoffs, profile..."
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
               onKeyPress={handleKeyPress}
             />
-            <button 
+            <button
               className="btn btn-sm btn-primary rounded-circle d-flex align-items-center justify-content-center"
               style={{ width: '36px', height: '36px' }}
               onClick={handleSendMessage}
