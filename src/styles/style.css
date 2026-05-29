@@ -1,42 +1,27 @@
     :root {
         --brand-primary: #0f172a;
-        /* Deep slate/navy primary background */
         --brand-navy: #1e3a8a;
-        /* Rich navy accent */
         --brand-navy-light: #3b82f6;
-        /* Vibrant sky blue secondary */
         --brand-accent: #d97706;
-        /* Amber/gold accent */
         --brand-gold-light: #fef3c7;
-        /* Warm gold backdrop */
         --bg-light: #f8fafc;
-        /* Clean light grey background */
         --bg-white: #ffffff;
-        /* Clean card/container background */
         --text-dark: #0f172a;
-        /* Deep charcoal text */
         --text-muted: #64748b;
-        /* Soft slate description text */
         --border-color: #e2e8f0;
-        /* Soft border grey */
 
         --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
         --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
         --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         --shadow-glow: 0 0 25px rgba(30, 58, 138, 0.12);
 
-        /* Splash gradient */
         --splash-bg: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
         --yel-text: #fbbf24;
         --cream: #fffbeb;
 
-        /* Cutoff chances */
         --call-high: #10b981;
-        /* Pastel emerald green */
         --call-medium: #f59e0b;
-        /* Pastel amber orange */
         --call-low: #ef4444;
-        /* Pastel rose red */
     }
 
     * {
