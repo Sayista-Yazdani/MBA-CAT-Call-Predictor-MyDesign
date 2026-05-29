@@ -344,7 +344,6 @@
         font-weight: 700;
     }
 
-    /* Form step display transition details */
     .form-step {
         transition: opacity 0.4s ease, transform 0.4s ease;
     }
@@ -382,7 +381,6 @@
         font-size: 1.3rem;
     }
 
-    /* Soft premium input and select states */
     .form-label {
         font-weight: 600;
         color: var(--text-dark);
@@ -548,7 +546,6 @@
         border-color: rgba(30, 58, 138, 0.15) !important;
     }
 
-    /* Radial progress chart gauge */
     .radial-gauge-wrapper {
         width: 65px;
         height: 65px;
@@ -597,7 +594,6 @@
         animation: slideDown 0.3s ease-out;
     }
 
-    /* Floating target icon box for target mode */
     .target-icon-box {
         background-color: rgba(217, 119, 6, 0.1);
         color: var(--brand-accent);
@@ -605,7 +601,6 @@
         height: 50px;
     }
 
-    /* Loading Spinner */
     .spinner {
         display: none;
         width: 26px;
@@ -619,7 +614,7 @@
         right: 15px;
     }
 
-    /* Consultation sticky panel */
+
     #consultation {
         position: fixed;
         bottom: 50px;
