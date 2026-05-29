@@ -60,7 +60,6 @@ Please advise on my chances and how I should prepare for the interview.`;
     // In static sites hosted on GitHub Pages, we can easily collect leads by sending a POST request
     // to a free Google App Script endpoint connected to a Google Sheet!
     try {
-      // Configurable endpoint - defaults to a mock endpoint but structured for Google App Script webapps
       const webhookUrl = "https://script.google.com/macros/s/AKfycbxk6TGM2j1MgB6cOc4ANHgi7CPUTA6D223x6s-x8g_hzHqM1qmOKUIW-fiO-QBn-VZQEA/exec";
 
       const payload = {
