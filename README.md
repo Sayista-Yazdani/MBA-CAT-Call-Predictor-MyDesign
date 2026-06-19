@@ -146,9 +146,3 @@ npm run build
 ## 🤖 Continuous Deployment (CI/CD)
 
 The project incorporates **GitHub Actions** for automated continuous deployment. 
-
-Every time you push a commit to the `main` branch, the YML workflow automatically:
-1. Spins up a secure cloud Ubuntu runner.
-2. Installs package dependencies.
-3. Compiles the optimized production bundle (`npm run build`).
-4. Pushes the static build directly to the `gh-pages` branch, updating your live URL (`sayista-yazdani.github.io/MBA-CAT-Call-Predictor-MyDesign/`) automatically within 30 seconds!
